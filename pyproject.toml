@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "good_eats"
+version = "0.0.1"
+description = "Demo project to analyze Good Food Purchasing Data"
+authors = ["Reuben Brasher <rkbrasher@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "good_eats"}]
+include = ["data/*", "README.md", "good_eats/tests/test_data/*"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.3.3"
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.1.1"
+matplotlib = "^3.10.7"
+seaborn = "^0.13.2"
+pytest = "^9.0.1"
+black = "^25.11.0"
+flake8 = "^7.3.0"
+jupyterlab = "^4.4.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
