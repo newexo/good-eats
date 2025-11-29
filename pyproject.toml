@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "good_eats"
-version = "0.0.1"
+version = "0.0.2"
 description = "Demo project to analyze Good Food Purchasing Data"
 authors = ["Reuben Brasher <rkbrasher@gmail.com>"]
 license = "MIT"
@@ -9,8 +9,9 @@ packages = [{include = "good_eats"}]
 include = ["data/*", "README.md", "good_eats/tests/test_data/*"]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 pandas = "^2.3.3"
+pyspark = "^4.0.1"
 
 [tool.poetry.group.dev.dependencies]
 jupyter = "^1.1.1"
