@@ -3,6 +3,7 @@ import pytest
 
 from good_eats.directories import test_data
 
+
 # ---------------------------------------------------------
 # Pytest Fixture
 # ---------------------------------------------------------
@@ -48,6 +49,7 @@ def test_no_missing_except_health_hospitals(fake_df):
     """
     non_hh = fake_df[fake_df["Agency"] != "Health + Hospitals"]
     assert non_hh["Total Cost"].notna().all()
+
 
 # ---------------------------------------------------------
 # Categorical Domain Tests
@@ -124,9 +126,11 @@ def test_multiple_distributors(fake_df):
     """
     assert fake_df["Distributor"].nunique() >= 2
 
+
 # ---------------------------------------------------------
 # Aggregate Tests (Sums and Means)
 # ---------------------------------------------------------
+
 
 def test_total_units_sum(fake_df):
     """
@@ -144,7 +148,7 @@ def test_total_weight_sum(fake_df):
     Test the total sum of Total Weight in lbs across the dataset.
     """
     total_weight = fake_df["Total Weight in lbs"].sum()
-    expected =21475
+    expected = 21475
     assert total_weight == expected
 
 

@@ -44,6 +44,69 @@ To download the Good Food Purchasing dataset itself,
 make data
 ```
 
+## Java Requirement for PySpark
+
+Portions of the test suite rely on PySpark for validating the parity of data processing between pandas and Spark. Because PySpark launches a Java Virtual Machine (JVM) internally, a functioning Java installation is required. Without Java, attempts to construct a `SparkSession` will fail with errors such as:
+
+> *“Unable to locate a Java Runtime… Java gateway process exited…”*
+
+To ensure PySpark can initialize correctly, install a Java Development Kit (JDK) and make it available in the active shell environment.
+
+### Installing Java on macOS
+
+The recommended approach is to install a modern, OpenJDK-compatible distribution. When using Homebrew, a compatible JDK (Temurin 17) may be installed as follows:
+
+```bash
+brew install temurin@17
+```
+
+After installation, confirm that Java is available on the PATH:
+
+```bash
+java -version
+```
+
+macOS users should also define the `JAVA_HOME` environment variable so that PySpark and related tools consistently locate the runtime. This may be done using Apple’s Java home utility:
+
+```bash
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+```
+
+Adding this line to `~/.zshrc` or the relevant shell profile ensures it is configured for all future sessions.
+
+### Installing Java on Ubuntu
+
+Ubuntu users may install OpenJDK from the default package repository. A suitable version for PySpark is OpenJDK 17:
+
+```bash
+sudo apt update
+sudo apt install openjdk-17-jdk
+```
+
+Verify the installation:
+
+```bash
+java -version
+```
+
+If necessary, set the `JAVA_HOME` variable explicitly:
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+```
+
+This variable may be added to `~/.bashrc` or `~/.profile` to ensure persistence across sessions.
+
+### Verifying PySpark Integration
+
+Once Java is installed and discoverable, the following command should succeed inside the project’s Python environment:
+
+```bash
+python -c "from pyspark.sql import SparkSession; SparkSession.builder.master('local[*]').getOrCreate().stop()"
+```
+
+If this command completes without raising an exception, the environment is correctly configured for executing the PySpark-based tests included in the `good_eats` test suite.
+
 ## Project Structure
 
 The `good-eats` repository is organized as a Python package with supporting directories for data, notebooks, and automation:
