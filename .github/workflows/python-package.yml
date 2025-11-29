@@ -2,9 +2,9 @@ name: Python package
 
 on:
   push:
-    branches: [ "good_eats", "main" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "good_eats", "main" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -13,10 +13,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12"]
+        python-version: ["3.12"]
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
