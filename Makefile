@@ -16,7 +16,7 @@ format:
 
 # Lint the code using Flake8
 lint:
-	poetry run flake8 .
+	poetry run flake8 --max-line-length=88 .
 
 # Run all quality checks: formatting, linting, and tests
 check: format lint test
