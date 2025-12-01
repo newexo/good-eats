@@ -23,7 +23,7 @@ After activation, installing Poetry inside the environment ensures that all subs
 Users who prefer Conda may create an environment with a specified Python version and then install Poetry within it:
 
 ```bash
-conda create -n good-eats python=3.11
+conda create -n good-eats python=3.12
 conda activate good-eats
 pip install poetry
 ```
